@@ -28,3 +28,15 @@ CREATE TABLE IF NOT EXISTS activity(
 	FOREIGN KEY(pomodoro) REFERENCES pomodoro(id),
 	FOREIGN KEY(student) REFERENCES student(id)
 );
+
+CREATE TABLE IF NOT EXISTS dashboard (
+	id SERIAL PRIMARY KEY
+);
+
+CREATE TABLE IF NOT EXISTS dashboard_activity (
+	activity int,
+	dashboard int,
+	FOREIGN KEY(activity) REFERENCES activity(id),
+	FOREIGN KEY(dashboard) REFERENCES dashboard(id),
+	PRIMARY KEY(activity, dashboard)
+);
