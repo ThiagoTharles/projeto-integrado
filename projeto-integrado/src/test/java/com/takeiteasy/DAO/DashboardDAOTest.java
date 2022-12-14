@@ -1,9 +1,9 @@
-package com.takeiteasy.controller;
+package com.takeiteasy.DAO;
 import org.junit.Test;
 import org.junit.Before;    
     
-public class PomodoroControllerTest {
-    
+public class DashboardDAOTest {
+
     @Before
     public void setup(){
 
