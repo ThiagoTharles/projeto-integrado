@@ -1,6 +1,7 @@
 package com.takeiteasy.entities;
 
 public class Activity {
+    private static int idGenerater = 0;
     private int id;
     private String name, description;
     private Tag tag;
@@ -10,12 +11,14 @@ public class Activity {
     public Activity() {
     }
     public Activity(String name, String description, Tag tag, Pomodoro pomodoro, Student student) {
+        this.id = Activity.idGenerater++;
         this.name = name;
         this.description = description;
         this.tag = tag;
         this.pomodoro = pomodoro;
         this.student = student;
     }
+
     public String getName() {
         return name;
     }
