@@ -7,7 +7,10 @@ import com.takeiteasy.entities.Pomodoro;
 import com.takeiteasy.entities.Student;
 import com.takeiteasy.entities.Tag;
 
-import org.junit.Before;    
+import static org.junit.Assert.assertNotEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
+  
     
 public class ActivityDAOTest {
     private ActivityDAO actDao = new ActivityDAO();
@@ -31,10 +34,10 @@ public class ActivityDAOTest {
         activity.setStudent(student);
         activity.setTag(tag);
         actDao.insert(
-            activity.getName(),
-            activity.getPomodoro(),
-            activity.getStudent(),
-            activity.getTag()
+            activity.getName(), " ",
+            activity.getTag().getId(),
+            activity.getPomodoro().getId(),
+            activity.getStudent().getId()
         );
         Activity activity2 = actDao.get(0);
         assertNotNull("Activity inserted", activity2);
@@ -64,10 +67,11 @@ public class ActivityDAOTest {
         activity.setStudent(student);
         activity.setTag(tag);
         actDao.insert(
-                activity.getName(),
-                activity.getPomodoro(),
-                activity.getStudent(),
-                activity.getTag());
+            activity.getName(), " ",
+            activity.getTag().getId(),
+            activity.getPomodoro().getId(),
+            activity.getStudent().getId()
+        );
         assertNotNull(actDao.get(0));
     }
 
@@ -91,13 +95,14 @@ public class ActivityDAOTest {
         activity.setStudent(student);
         activity.setTag(tag);
         actDao.insert(
-                activity.getName(),
-                activity.getPomodoro(),
-                activity.getStudent(),
-                activity.getTag());
+            activity.getName(), " ",
+            activity.getTag().getId(),
+            activity.getPomodoro().getId(),
+            activity.getStudent().getId()
+        );
         Activity activity2 = actDao.get(0);
-        activity2.setStatus("not ok");
-        assertNotEquals(activity.getStatus(), activity2.getStatus());
+        activity2.setDescription("not ok");
+        assertNotEquals(activity.getDescription(), activity2.getDescription());
     }
 
     @Test
@@ -120,12 +125,13 @@ public class ActivityDAOTest {
         activity.setStudent(student);
         activity.setTag(tag);
         actDao.insert(
-                activity.getName(),
-                activity.getPomodoro(),
-                activity.getStudent(),
-                activity.getTag());
+            activity.getName(), " ",
+            activity.getTag().getId(),
+            activity.getPomodoro().getId(),
+            activity.getStudent().getId()
+        );
         Activity activity2 = actDao.get(0);
-        assertNull(null, pomodoro2);
+        assertNull(null, activity2);
     }
 }
     

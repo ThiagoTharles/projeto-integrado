@@ -56,6 +56,21 @@ public class DashboardDAO extends ConnectionDAO{
         return null;
     }
 
+    public Activity get(int dashboard, int id) {
+        try {
+            Connection connection = DriverManager.getConnection(jdbcURL, username, password);
+            String sql = "SELECT activity FROM dashboard_activity WHERE dashboard = "+ dashboard+ "AND activity="+ id;
+            Statement statement = connection.createStatement();
+            ResultSet result = statement.executeQuery(sql);
+            ActivityDAO activityDAO = new ActivityDAO();
+            Activity res = activityDAO.get(result.getInt("id"));
+            return res;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
     public void delete(int id) {
         try {
             Connection connection = DriverManager.getConnection(jdbcURL, username, password);

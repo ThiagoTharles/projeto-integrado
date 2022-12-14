@@ -12,8 +12,7 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 
 import java.util.ArrayList;
-
-import org.junit.Before;    
+import java.util.List;   
     
 public class DashboardDAOTest {
 
@@ -38,7 +37,7 @@ public class DashboardDAOTest {
             dashboard.getId(),
             activity
             );
-        Dashboard dashboard2 = dashDao.get(0);
+        List<Activity> dashboard2 = dashDao.list(0);
         assertNotNull(null, dashboard2);
     }
 
@@ -48,33 +47,51 @@ public class DashboardDAOTest {
 
     @Test
     public void update() {
-        Pomodoro pomodoroObj = new Pomodoro();
-        pomodoroObj.setId(0);
-        pomodoroObj.setPomodoro(30);
-        pomodoroObj.setShortBreak(5);
-        pomodoroObj.setCycle(1);
-        pomodoroObj.setLongBreak(15);
-        pomodoroObj.setStatus("ok");
-        dashDao.insert(pomodoroObj.getShortBreak(), pomodoroObj.getLongBreak(),
-                pomodoroObj.getPomodoro(), pomodoroObj.getCycle(), pomodoroObj.getStatus());
-        Pomodoro pomodoro2 = dashDao.get(0);
-        pomodoro2.setStatus("not ok");
-        assertNotEquals(pomodoroObj.getStatus(), pomodoro2.getStatus());
+        Tag tag = new Tag();
+        tag.setId(0);
+        tag.setName("novo");
+        Pomodoro pomodoro = new Pomodoro();
+        pomodoro.setId(0);
+        pomodoro.setPomodoro(30);
+        pomodoro.setShortBreak(5);
+        pomodoro.setCycle(1);
+        pomodoro.setLongBreak(15);
+        Student student = new Student();
+        student.setId(0);
+        student.setName("Colombo");
+        Activity activity = new Activity();
+        activity.setName("Programação");
+        activity.setPomodoro(pomodoro);
+        activity.setStudent(student);
+        activity.setTag(tag);
+        dashDao.insert(0, activity);
+        Activity activity2 = dashDao.get(0, 0);
+        activity2.getPomodoro().setStatus("not ok");
+        assertNotEquals(activity.getPomodoro().getStatus(), activity2.getPomodoro().getStatus());
     }
 
     @Test
     public void delete(int id) {
-        Pomodoro pomodoroObj = new Pomodoro();
-        pomodoroObj.setId(2);
-        pomodoroObj.setPomodoro(30);
-        pomodoroObj.setShortBreak(5);
-        pomodoroObj.setCycle(1);
-        pomodoroObj.setLongBreak(15);
-        pomodoroObj.setStatus("ok");
-        dashDao.insert(pomodoroObj.getShortBreak(), pomodoroObj.getLongBreak(),
-                pomodoroObj.getPomodoro(), pomodoroObj.getCycle(), pomodoroObj.getStatus());
-        Pomodoro pomodoro2 = dashDao.get(2);
-        assertNull(null, pomodoro2);
+        Tag tag = new Tag();
+        tag.setId(0);
+        tag.setName("novo");
+        Pomodoro pomodoro = new Pomodoro();
+        pomodoro.setId(0);
+        pomodoro.setPomodoro(30);
+        pomodoro.setShortBreak(5);
+        pomodoro.setCycle(1);
+        pomodoro.setLongBreak(15);
+        Student student = new Student();
+        student.setId(0);
+        student.setName("Colombo");
+        Activity activity = new Activity();
+        activity.setName("Programação");
+        activity.setPomodoro(pomodoro);
+        activity.setStudent(student);
+        activity.setTag(tag);
+        dashDao.insert(0, activity);
+        Activity activity2 = dashDao.get(0,2);
+        assertNull(null, activity2);
     }
 }
     
